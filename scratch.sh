@@ -9,14 +9,12 @@
 # firewall:
 # ssh:
 # antivirus: clamd
-
+# APT::Clean-installed
 # ARRAY, HASHTABLES & VARIABLES
 # basic system packages
-sys=("vim" "emacs" "git" "timeshift" "nala" "zram-tools" "exa" "neofetch" "alacritty" "mtools" "dosfstools" "acpi" "acpid" "avahi-daemon" "gvfs-backends" "thunar" "thunar-archive-plugin" "thunar-volman" "file-roller" "build-essential" "unzip" "sed" "curl" "wget" "gcc" "make")
+sys=( "exa"  "thunar" "thunar-archive-plugin" "thunar-volman" "file-roller" "build-essential" "unzip" "sed" "curl" "wget" "gcc" "make")
 way=("sway" "waybar" "swayidle" "swaylock" "swaybg" "wayland-protocols" "xwayland" "libgtk-layer-shell-dev" "lxappearance" "policykit-1-gnome" "network-manager" "network-manager-gnome" "mako-notifier" "wofi" "suckless-tools" "xdg-desktop-portal-wlr" "brightnessctl" "wl-clipboard" "dex" "jq" "libpam0g-dev" "libxcb-xkb-dev")
 apps=("flameshot" "libreoffice" "thunderbird" "flatpak")
-flat=("com.brave.Browser" "org.mozilla.firefox")
-dev=("")
 # install necessary packages
 sudo apt install ${sys[@]} ${way[@]} ${app[@]} ${dev[@]}
 flatpak install flathub ${flat[@]}
