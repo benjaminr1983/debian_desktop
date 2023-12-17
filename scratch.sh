@@ -12,8 +12,8 @@
 # APT::Clean-installed
 # ARRAY, HASHTABLES & VARIABLES
 # basic system packages
-sys=( "exa"  "thunar" "thunar-archive-plugin" "thunar-volman" "file-roller" "build-essential" "unzip" "sed" "curl" "wget" "gcc" "make")
-way=("sway" "waybar" "swayidle" "swaylock" "swaybg" "wayland-protocols" "xwayland" "libgtk-layer-shell-dev" "lxappearance" "policykit-1-gnome" "network-manager" "network-manager-gnome" "mako-notifier" "wofi" "suckless-tools" "xdg-desktop-portal-wlr" "brightnessctl" "wl-clipboard" "dex" "jq" "libpam0g-dev" "libxcb-xkb-dev")
+sys=( "exa"  "build-essential" "unzip" "sed" "curl" "wget" "gcc" "make")
+way=( "network-manager" "network-manager-gnome" )
 apps=("flameshot" "libreoffice" "thunderbird" "flatpak")
 # install necessary packages
 sudo apt install ${sys[@]} ${way[@]} ${app[@]} ${dev[@]}

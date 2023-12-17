@@ -10,14 +10,14 @@
 ## script_purpose: dev/sysadmin/systemd-only
 ## os_config
 # os_distro: Debian 12 Bookworm/stable Trixie/testing Sid/unstable-rolling
-# os_filesystem:
-# os_window manager:
-# os_bootloader:
-# os_mounting:
-# os_ssh:
-# os_network:
-# os_firewall:
-# os_antivirus:
+# os_filesystem: btrfs
+# os_window manager: wayland/sway
+# os_bootloader: systemd-boot
+# os_mounting: systemd.automount
+# os_ssh: sshd
+# os_network: networkd
+# os_firewall: firewalld
+# os_antivirus: clamd
 ##--------------------------------------------------------------------------------------------------------------------------------------------##
 ## FUNCTION, ARRAY, HASHTABLE & VARIABLES ##
 # package
@@ -25,11 +25,10 @@ sys=(                                        # system packages that are required
     "vim"                                    # terminal editor          
     "emacs"                                  # IDE
     "alacritty"                              # terminal
-    "wget"
-    "curl"
-    "sed"
-    "unzip"
-    "tar"
+    "curl"                                   # download protocoll
+    "sed"                                    # streamline editor 
+    "unzip"                                  # compress/decompress files
+    "tar"                                    # compress/decompress files
     "git"                                    # version control system
     "nala"                                   # more modern package manager
     "timeshift"                              # manages snapshots of the system
@@ -42,14 +41,40 @@ sys=(                                        # system packages that are required
     "gvfs-backends"                          # virtual file system on high level
     
 )
-wm=(
-    
+wm=(                                         # packages required for the wm
+    "sddm"                                   # displaymanager 
+    "sway"                                   # wayland compositor
+    "waybar"                                 # wayland bar for wayland compositors
+    "swayidle"
+    "swaylock"
+    "swaybg"
+    "wayland-protocols"
+    "xwayland"
+    "libgtk-layer-shell-dev"
+    "lxappearance"
+    "policykit-1-gnome"
+    "mako-notifier"
+    "wofi"
+    "suckless-tools"
+    "xdg-desktop-portal-wlr"
+    "brightnessctl"
+    "wl-clipboard"
+    "dex"
+    "jq"
+    "libpam0g-dev"
+    "libxcb-xkb-dev"
 )
 app=(
     "neofetch"
     "thunar"
     "thunar-archive-plugin"
+    "thunar-volman"
     "file-roller"
+    "flameshot"
+    "libreoffice"
+    "okular"
+    "thunderbird"
+    "flatpak"
 )
 flat=(
     "com.brave.Browser"
@@ -60,11 +85,19 @@ dev=(
     "build-essential"
     "make"
 )
+# script
+folder=(
+    
+)
 ## PROCEDURES
 # package_install
 sudo apt update && sudo apt upgrade
-sudo apt install ${sys[@]} ${wm[@]} ${app[@]} ${dev[@]}
-sudo nala autoremove && sudo nala autoclean
+sudo apt install ${sys[@]}
+sudo nala install ${wm[@]} ${app[@]} ${dev[@]} && sudo nala autoremove
+sudo apt autoclean
+flatpak install flathub ${flat[@]}
+# folderstructure $HOME
+if [ ! -d $HOME/ ]
 ## CONFIGURATION ##
 ## SERVICES ##
 
