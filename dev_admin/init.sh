@@ -22,6 +22,7 @@
 ## FUNCTION, ARRAY, HASHTABLE & VARIABLES ##
 # package
 sys=(                                        # system packages that are required so debian 12 works
+    "sudo"                                   # elevate permissions
     "vim"                                    # terminal editor          
     "emacs"                                  # IDE
     "alacritty"                              # terminal
@@ -39,7 +40,7 @@ sys=(                                        # system packages that are required
     "acpid"                                  # handler for acpi
     "avahi-daemon"                           # network discovery
     "gvfs-backends"                          # virtual file system on high level
-    
+    "xdg-user-dirs"                          # creates user directories
 )
 wm=(                                         # packages required for the wm
     "sddm"                                   # displaymanager 
@@ -87,18 +88,40 @@ dev=(
 )
 # script
 folder=(
-    
+    "Desktop"
+    "Downloads"
+    "Templates"
+    "Public"
+    "Documents"
+    "Music"
+    "Pictures"
+    "Videos"
 )
-## PROCEDURES
+## PRE-PROCEDURES
 # package_install
-sudo apt update && sudo apt upgrade
-sudo apt install ${sys[@]}
-sudo nala install ${wm[@]} ${app[@]} ${dev[@]} && sudo nala autoremove
-sudo apt autoclean
-flatpak install flathub ${flat[@]}
-# folderstructure $HOME
-if [ ! -d $HOME/ ]
+#sudo apt update && sudo apt upgrade
+#sudo apt install ${sys[@]}
+#sudo nala install ${wm[@]} ${app[@]} ${dev[@]} && sudo nala autoremove
+#sudo apt autoclean
+#flatpak install flathub ${flat[@]}
 ## CONFIGURATION ##
+# sudo
+# xdg-user-dirs
+
+# ssh
+# firewall
+## PROCEDURES
+# create user folders
+for f in ${folder[@]};
+do
+    if [ ! -d $HOME/$f ];
+    then
+	xdg-user-dirs-update
+    else
+	continue
+    fi
+done
+
 ## SERVICES ##
 
 
