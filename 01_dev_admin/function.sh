@@ -7,6 +7,11 @@
 ## script_license: GPL-2.0
 ##--------------------------------------------------------------------------------------------------------------------------------------------##
 ## script_task: create functions
-function userCreation() {
-    
-}
+#function userCreation() {
+#    
+#}
+_user=(
+    $(awk -F':' '$3>999 {print $1}' /etc/passwd | grep -v nobody)
+)
+
+echo ${_user[0]}
