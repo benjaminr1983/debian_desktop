@@ -20,7 +20,7 @@
 # os_antivirus: clamd
 ##--------------------------------------------------------------------------------------------------------------------------------------------##
 ## SCRIPT SETTING
-shopt -s nocasematch                         # no case sensitivity
+shopt -s nocasematch                                                                                # no case sensitivity
 source ./function.sh
 ## FUNCTION, ARRAY, HASHTABLE & VARIABLES ##
 # package
